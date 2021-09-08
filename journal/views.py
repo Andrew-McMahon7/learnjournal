@@ -4,18 +4,33 @@ from journal.models import Resource
 from django.template import loader
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView 
+from journal.forms import ResourceForm
 
 # Create your views here.
 
 def index(request):
-    output = "Hello World"
     resources = Resource.objects.all()
+
+
+    resource_form = ResourceForm()
+    if request.POST:
+        resource_form = ResourceForm(request.POST)
+        if resource_form.is_valid():
+            resource = resource_form.save(commit=False)
+            resource.save()
+
+    else :
+        resource_form = ResourceForm()
+
+
     template = loader.get_template('resources.html')
-    resource_list = ", ".join([r.name for r in resources])
     context = {
         'resources': resources,
+        'resource_form': resource_form,
     }
     return HttpResponse(template.render(context, request))
+
+
 
 
 class ResourceView(generic.ListView):

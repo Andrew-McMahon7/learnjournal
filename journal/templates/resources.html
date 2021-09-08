@@ -1,14 +1,26 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+{% extends 'basic_generic.html' %}
 
-<h1>Hello world!</h1>
-{% if resources %}
-    <ul>
-    {% for resource in resources%}
+{% block content %}
 
-        <li><a href="{{resource.url}}">{{resource.name}}</a></li>
-    {% endfor %}        
-    </ul>
-{% else %}
-    <p>No Resources are available</p>
-{% endif %}
+    {% if resources %}
+        <ul>
+        {% for resource in resources%}
+
+            <li><a href="{{resource.url}}">{{resource.name}}</a></li>
+        {% endfor %}        
+        </ul>
+    {% else %}
+        <p>No Resources are available</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+    {{ resource_form.as_p }}
+
+    <input type="submit" value="Save">
+
+    </form>
+
+{% endblock content %}
+
