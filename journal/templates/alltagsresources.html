@@ -1,0 +1,21 @@
+{% extends 'basic_generic.html' %}
+
+{% block title %}View Software Tags{% endblock %}
+
+{% block content %}
+
+    {% if tagResources %}
+        <ul>
+        {% for resource in tagResources%}
+
+            <li><a href="{{resource.tagUrl}}">{{resource.tagName}}</a></li>
+        {% endfor %}        
+        </ul>
+    {% else %}
+        <p>You do not currently have any software tags in your Journal, please add some</p>
+    {% endif %}
+
+    <button class="btn btn-primary" onclick="window.location='createResource';" >Add New Software Tag</button>
+
+{% endblock content %}
+

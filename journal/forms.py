@@ -1,7 +1,7 @@
 from django.db.models import fields
 from django.db.models.base import Model
 from django.forms import ModelForm
-from journal.models import JournalResource, Resource
+from journal.models import ContactsResource, JournalResource, Resource, TagsResource
 
 
 class JournalResourceForm(ModelForm):
@@ -9,6 +9,17 @@ class JournalResourceForm(ModelForm):
               model = JournalResource
               fields = '__all__'
 
+
+class TagResourceForm(ModelForm):
+       class Meta:
+              model = TagsResource
+              fields = '__all__'
+
+
+class ContactResourceForm(ModelForm):
+       class Meta:
+              model = ContactsResource
+              fields = '__all__'
 
 # # Creating a form to add an article.
 # form = ArticleForm()

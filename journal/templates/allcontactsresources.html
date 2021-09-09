@@ -1,0 +1,21 @@
+{% extends 'basic_generic.html' %}
+
+{% block title %}View Software Tags{% endblock %}
+
+{% block content %}
+
+    {% if contactResources %}
+        <ul>
+        {% for resource in contactResources%}
+
+            <li>Name: {{resource.contactName}}, Email: {{resource.contactEmail}}, Number: {{resource.contactNumber}}</li>
+        {% endfor %}        
+        </ul>
+    {% else %}
+        <p>You do not currently have any contacts in your Journal, please add some</p>
+    {% endif %}
+
+    <button class="btn btn-primary" onclick="window.location='createResource';" >Add New Contact</button>
+
+{% endblock content %}
+
