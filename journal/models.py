@@ -35,5 +35,7 @@ class JournalResource(models.Model):
     tagNames = models.ManyToManyField(TagsResource)
     contactNames = models.ManyToManyField(ContactsResource)
 
+    def all_tags(self):
+        return ', '.join([tag.tagName for tag in self.tagNames])
 
 

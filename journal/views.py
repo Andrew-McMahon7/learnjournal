@@ -105,7 +105,7 @@ class ResourceCreateView(CreateView):
     success_url = reverse_lazy('resources')
 
     model = JournalResource
-    fields = '__all__'
+    form_class = JournalResourceForm
 
 
 

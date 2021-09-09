@@ -3,19 +3,39 @@
 {% block title %}View Resources{% endblock %}
 
 {% block content %}
+<br>
+    <div class="container">
 
-    {% if journalResources %}
-        <ul>
-        {% for resource in journalResources%}
+        {% if journalResources %}
 
-            <li><a href="{{resource.journalUrl}}">{{resource.journalName}}</a></li>
-        {% endfor %}        
-        </ul>
-    {% else %}
-        <p>You do not currently have any resources in your Journal, please add some</p>
-    {% endif %}
+            <h3>Resource List</h3>
+            <table>
+                    <thead>Name</thead>
+                    <thead>Software Tags</thead>
+                    <thead>Contacts</thead>
+                    <thead>Files?</thead>
+                    <thead>Changes</thead>
+                    <thead>Delete</thead>
+                
+                {% for resource in journalResources%}
+                <tr>
+                    
 
-    <button class="btn btn-primary" onclick="window.location='createResource';" >Add New Resource</button>
+                        <td><a href="{{resource.journalUrl}}">{{resource.journalName}}</a></td>
+                        <td>{{resource.all_tags}}</td>
+                    
+
+                </tr>
+                {% endfor %}  
+
+        {% else %}
+            <h5>You do not currently have any resources in your Journal, please add some</h5>
+        {% endif %}
+
+        <button class="btn btn-primary" onclick="window.location='createResource';" >Add New Resource</button>
+
+    </div>
+    
 
 {% endblock content %}
 
