@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'journal',
     'bootstrap3',
+    'jquery',
 ]
 
 MIDDLEWARE = [
