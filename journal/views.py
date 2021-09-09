@@ -1,32 +1,32 @@
 from django.http.response import HttpResponse
 from django.shortcuts import render
-from journal.models import Resource
+from journal.models import JournalResource, Resource
 from django.template import loader
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView 
-from journal.forms import ResourceForm
+from journal.forms import JournalResourceForm
 
 # Create your views here.
 
 def index(request):
-    resources = Resource.objects.all()
+    journalResources = JournalResource.objects.all()
 
 
-    resource_form = ResourceForm()
+    journalResourceForm = JournalResourceForm()
     if request.POST:
-        resource_form = ResourceForm(request.POST)
-        if resource_form.is_valid():
-            resource = resource_form.save(commit=False)
-            resource.save()
+        journalResourceForm = JournalResourceForm(request.POST)
+        if journalResourceForm.is_valid():
+            journalResources = journalResourceForm.save(commit=False)
+            journalResources.save()
 
     else :
-        resource_form = ResourceForm()
+        journalResourceForm = JournalResourceForm()
 
 
-    template = loader.get_template('resources.html')
+    template = loader.get_template('alljournalresources.html')
     context = {
-        'resources': resources,
-        'resource_form': resource_form,
+        'journalResourceForm': journalResourceForm,
+        'journalResources': journalResources,
     }
     return HttpResponse(template.render(context, request))
 
@@ -34,12 +34,12 @@ def index(request):
 
 
 class ResourceView(generic.ListView):
-    template_name = 'resources.html'
-    context_object_name = 'resources'
+    template_name = 'alljournalresources.html'
+    context_object_name = 'journalResources'
 
     def get_queryset(self):
         """Return the last five published questions."""
-        return Resource.objects.order_by('name')  #order_by('-pub_date')[:5]
+        return JournalResource.objects.order_by('journalName')  #order_by('-pub_date')[:5]
 
 
 class ResourceCreateView(CreateView):

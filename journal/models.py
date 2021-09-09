@@ -13,7 +13,7 @@ class JournalResource(models.Model):
     journalName = models.CharField(max_length=200)
     journalUrl = models.URLField()
     lastAccessed = models.DateTimeField()
-    tagIds = models.JSONField()
+    tagIds = models.JSONField(blank = True)
 
 
 class TagsResource(models.Model):

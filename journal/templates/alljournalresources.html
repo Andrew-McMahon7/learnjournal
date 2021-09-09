@@ -2,21 +2,23 @@
 
 {% block content %}
 
-    {% if resources %}
+    {% if journalResources %}
         <ul>
-        {% for resource in resources%}
+        {% for resource in journalResources%}
 
-            <li><a href="{{resource.url}}">{{resource.name}}</a></li>
+            <li><a href="{{resource.journalUrl}}">{{resource.journalName}}</a></li>
         {% endfor %}        
         </ul>
     {% else %}
-        <p>No Resources are available</p>
+        <p>You do not currently have any resources in your Journal, please add some</p>
     {% endif %}
+
+    
 
     <form method="POST">
         {% csrf_token %}
 
-    {{ resource_form.as_p }}
+    {{ journalResourceForm.as_p }}
 
     <input type="submit" value="Save">
 

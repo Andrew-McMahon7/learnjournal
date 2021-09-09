@@ -1,10 +1,17 @@
+from django.db.models.base import Model
 from django.forms import ModelForm
-from journal.models import Resource
+from journal.models import JournalResource, Resource
 
 class ResourceForm(ModelForm):
          class Meta:
             model = Resource
             fields = ['name', 'url'] #Or 'All'
+
+
+class JournalResourceForm(ModelForm):
+       class Meta:
+              model = JournalResource
+              fields = '__all__'
 
 # # Creating a form to add an article.
 # form = ArticleForm()
