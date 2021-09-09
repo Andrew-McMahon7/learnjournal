@@ -1,28 +1,28 @@
-{% comment %} {% extends 'basic_generic.html' %} {% endcomment %}
+{% extends 'basic_generic.html' %}
+
 
 {% block content %}
 
-    {% if journalResources %}
-        <ul>
-        {% for resource in journalResources%}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-            <li><a href="{{resource.journalUrl}}">{{resource.journalName}}</a></li>
-        {% endfor %}        
-        </ul>
-    {% else %}
-        <p>You do not currently have any resources in your Journal, please add some</p>
-    {% endif %}
 
-    
+    <div class="container col-xs-*">
 
-    <form method="POST">
-        {% csrf_token %}
+        {% if journalResources %}
+            <ul>
+            {% for resource in journalResources%}
 
-    {{ journalResourceForm.as_p }}
+                <li><a href="{{resource.journalUrl}}">{{resource.journalName}}</a></li>
+            {% endfor %}        
+            </ul>
+        {% else %}
+            <p>You do not currently have any resources in your Journal, please add some</p>
+        {% endif %}
 
-    <input type="submit" value="Save">
+        <button class="btn btn-primary" onclick="window.location='createResource';" >Add New Resource</button>
 
-    </form>
+    </div>
 
 {% endblock content %}
 

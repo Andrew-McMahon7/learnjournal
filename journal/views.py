@@ -10,9 +10,8 @@ from journal.forms import JournalResourceForm
 
 def index(request):
     journalResources = JournalResource.objects.all()
-
-
     journalResourceForm = JournalResourceForm()
+
     if request.POST:
         journalResourceForm = JournalResourceForm(request.POST)
         if journalResourceForm.is_valid():
@@ -43,8 +42,10 @@ class ResourceView(generic.ListView):
 
 
 class ResourceCreateView(CreateView):
-    model = Resource
-    fields = ['name', 'url']
+    template_name = 'addResource.html'
+
+    model = JournalResource
+    fields = '__all__'
 
 class ResourceUpdateView(UpdateView):
     model = Resource
