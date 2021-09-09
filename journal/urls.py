@@ -7,5 +7,7 @@ urlpatterns = [
     path('allTagResources', views.TagResourceView.as_view(), name='resources_tags'),
     path('allContactResources', views.ContactResourceView.as_view(), name='resources_contacts'),
     path('createResource', views.ResourceCreateView.as_view(), name='resource_create'),
+    path('createTag', views.TagCreateView.as_view(), name='tag_resource_create'),
+    path('createContact', views.ContactCreateView.as_view(), name='contact_resource_create'),
     path('resource_update', views.ResourceUpdateView.as_view(), name='resource_update'),
 ]

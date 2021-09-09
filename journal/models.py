@@ -12,7 +12,7 @@ class Resource(models.Model):
 class TagsResource(models.Model):
     tagName = models.CharField(max_length=200)
     tagUrl = models.URLField()
-    imageUrl = models.URLField(blank = True)
+    imageUrl = models.URLField(blank = True, null = True)
 
     def __str__(self):
         return self.tagName

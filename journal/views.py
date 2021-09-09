@@ -5,6 +5,7 @@ from django.template import loader
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView 
 from journal.forms import JournalResourceForm, TagResourceForm, ContactResourceForm
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -101,8 +102,26 @@ class ContactResourceView(generic.ListView):
 
 class ResourceCreateView(CreateView):
     template_name = 'addResource.html'
+    success_url = reverse_lazy('resources')
 
     model = JournalResource
+    fields = '__all__'
+
+
+
+class TagCreateView(CreateView):
+    template_name = 'addTag.html'
+    success_url = reverse_lazy('resources_tags')
+
+    model = TagsResource
+    fields = '__all__'
+
+
+class ContactCreateView(CreateView):
+    template_name = "addContact.html"
+    success_url = "resources_contacts"
+
+    model = ContactsResource
     fields = '__all__'
 
 class ResourceUpdateView(UpdateView):
