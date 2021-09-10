@@ -11,7 +11,7 @@ from django.urls import reverse_lazy
 # Create your views here.
 
 def index(request):
-    journalResources = JournalResource.objects.all()
+    journalResources = JournalResource.objects.all().order_by('journalName')
     journalResourceForm = JournalResourceForm()
 
     if request.POST:
@@ -111,7 +111,7 @@ class ResourceCreateView(CreateView):
 
 
 class TagCreateView(CreateView):
-    template_name = 'addTag.html'
+    template_name = 'addResource.html'
     success_url = reverse_lazy('resources_tags')
 
     model = TagsResource
@@ -119,7 +119,7 @@ class TagCreateView(CreateView):
 
 
 class ContactCreateView(CreateView):
-    template_name = "addContact.html"
+    template_name = "addResource.html"
     success_url = reverse_lazy("resources_contacts")
 
     model = ContactsResource
