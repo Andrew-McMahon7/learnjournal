@@ -2,8 +2,9 @@ from django.http.response import HttpResponse
 from django.shortcuts import render
 from journal.models import ContactsResource, JournalResource, Resource, TagsResource, ContactsResource
 from django.template import loader
+from django.template.loader import render_to_string
 from django.views import generic
-from django.views.generic.edit import CreateView, UpdateView 
+from django.views.generic.edit import CreateView, DeleteView, UpdateView 
 from journal.forms import JournalResourceForm, TagResourceForm, ContactResourceForm
 from django.urls import reverse_lazy
 
@@ -119,15 +120,16 @@ class TagCreateView(CreateView):
 
 class ContactCreateView(CreateView):
     template_name = "addContact.html"
-    success_url = "resources_contacts"
+    success_url = reverse_lazy("resources_contacts")
 
     model = ContactsResource
     fields = '__all__'
 
 class ResourceUpdateView(UpdateView):
-    model = Resource
-    fields = ['name', 'url']
-
+    model = JournalResource
+    form_class = JournalResourceForm
+    template_name = 'updateResource.html'
+    success_url = reverse_lazy('resources')
 # class ResourceDeleteView(DeleteView):
 #     model = Resource
 #     success_url = reverse_lazy('Resource-list')

@@ -15,8 +15,8 @@ class TagsResource(models.Model):
     tagUrl = models.URLField()
     imageUrl = models.URLField(blank = True, null = True)
 
-    def __str__(self):
-        return self.tagName
+    # def __str__(self):
+    #     return self.tagName
 
 
 class ContactsResource(models.Model):

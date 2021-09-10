@@ -6,12 +6,16 @@ from django.forms.widgets import CheckboxSelectMultiple, Widget
 from journal.models import ContactsResource, JournalResource, Resource, TagsResource
 from django import forms
 
+class CustomTagMMCF(forms.ModelMultipleChoiceField):
+       def label_from_instance(self, tag):
+           return "%s" % tag.tagName
+
 class JournalResourceForm(ModelForm):
        class Meta:
               model = JournalResource
               fields = ['journalName', 'journalUrl', 'tagNames', 'contactNames']
 
-       tagNames = forms.ModelMultipleChoiceField(
+       tagNames = CustomTagMMCF(
               queryset = TagsResource.objects.all(),
               widget = forms.CheckboxSelectMultiple
        )

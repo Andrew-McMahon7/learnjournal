@@ -3,9 +3,17 @@
 {% block title %}View Resources{% endblock %}
 
 {% block content %}
+
+<style>
+    .list-group-item {
+        padding: 3px 10px;
+        width: 150px;
+    }
+    
+</style>
+
 <br>
     <div class="container">
-        
         <div class="container">
             {% if journalResources %}
 
@@ -29,7 +37,6 @@
                         <th scope="col">Contacts</th>
                         <th scope="col">Files?</th>
                         <th scope="col">Changes</th>
-                        <th scope="col">Delete</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -37,12 +44,12 @@
                       <tr>
                         <th scope="row"><a href="{{resource.journalUrl}}">{{resource.journalName}}</a></th>
                         <td>
-
-                            {% for name in resource.tagNames.all %}
-
-                            {{ name }} <br>
-
-                            {% endfor %}
+                            <div class="list-group">
+                                {% for tag in resource.tagNames.all %}
+                                <a href="{{tag.tagUrl}}" class="list-group-item list-group-item-action list-group-item-info"><img height="15" width="15" src="{{tag.imageUrl}}" alt="">{{ tag.tagName }}</a>
+                                {% endfor %}
+                            </div>
+                            
 
 
                         </td>
@@ -57,10 +64,8 @@
 
                         </td>
                         <td>ADD THIS??</td>
-                        <td align="center"><button class="btn btn-primary btn-sml">Edit</button></td>
-                        <td align="center"><div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                          </div></td>
+                        <td><button class="btn btn-warning btn-sml" onclick="window.location = '/updateResource/{{resource.id}}';">Edit</button>
+                        <button class="btn btn-danger btn-sml">Delete</button></td>
                       </tr>
                     {% endfor %} 
                       
