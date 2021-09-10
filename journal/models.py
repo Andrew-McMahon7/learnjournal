@@ -36,4 +36,8 @@ class JournalResource(models.Model):
     tagNames = models.ManyToManyField(TagsResource)
     contactNames = models.ManyToManyField(ContactsResource)
 
+    def save(self):
+        self.lastAccessed = datetime.now()
+        super(JournalResource, self).save()
+
     

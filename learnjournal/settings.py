@@ -30,6 +30,10 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+import sys
+
+sys.modules['fontawesome_free'] = __import__('fontawesome-free')
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,6 +44,7 @@ INSTALLED_APPS = [
     'journal',
     'bootstrap3',
     'jquery',
+    'fontawesome_free',
 ]
 
 MIDDLEWARE = [
