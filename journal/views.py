@@ -12,8 +12,8 @@ from django.urls import reverse_lazy
 
 def index(request):
     journalResources = JournalResource.objects.all().order_by('journalName')
-    tagResources = TagsResource.objects.all()
-    contactResources = ContactsResource.objects.all()
+    tagResources = TagsResource.objects.all().order_by('tagName')
+    contactResources = ContactsResource.objects.all().order_by('contactName')
     journalResourceForm = JournalResourceForm()
 
     if request.POST:
