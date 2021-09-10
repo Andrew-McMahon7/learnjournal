@@ -12,6 +12,8 @@ from django.urls import reverse_lazy
 
 def index(request):
     journalResources = JournalResource.objects.all().order_by('journalName')
+    tagResources = TagsResource.objects.all()
+    contactResources = ContactsResource.objects.all()
     journalResourceForm = JournalResourceForm()
 
     if request.POST:
@@ -24,10 +26,12 @@ def index(request):
         journalResourceForm = JournalResourceForm()
 
 
-    template = loader.get_template('alljournalresources.html')
+    template = loader.get_template('Homepage.html')
     context = {
         'journalResourceForm': journalResourceForm,
         'journalResources': journalResources,
+        'tagResources': tagResources,
+        'contactResources': contactResources,
     }
     return HttpResponse(template.render(context, request))
 
@@ -130,6 +134,13 @@ class ResourceUpdateView(UpdateView):
     form_class = JournalResourceForm
     template_name = 'updateResource.html'
     success_url = reverse_lazy('resources')
+
+
+class ContactUpdateView(UpdateView):
+    model = ContactsResource
+    fields = '__all__'
+    template_name = 'updateResource.html'
+    success_url = reverse_lazy('resources_contacts')
 # class ResourceDeleteView(DeleteView):
 #     model = Resource
 #     success_url = reverse_lazy('Resource-list')

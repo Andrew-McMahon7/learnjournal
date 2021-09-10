@@ -1,0 +1,77 @@
+<style>
+    .list-group-item {
+        padding: 3px 10px;
+        width: 150px;
+    }
+</style>
+
+<br>
+<div class="container">
+    <div class="container">
+        {% if journalResources %}
+
+        <div class="container" id="table header">
+            <div class="float-left">
+                <h3>Resource List</h3>
+            </div>
+            <div class="float-right">
+                <button class="btn btn-primary" onclick="window.location='createResource';">Add New Resource</button>
+            </div>
+        </div>
+        <br><br>
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Resource Name</th>
+                    <th scope="col">Software Tags</th>
+                    <th scope="col">Contacts</th>
+                    <th scope="col">Files?</th>
+                    <th scope="col">Changes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for resource in journalResources%}
+                <tr>
+                    <th scope="row"><a href="{{resource.journalUrl}}">{{resource.journalName}}</a></th>
+                    <td>
+                        <div class="list-group">
+                            {% for tag in resource.tagNames.all %}
+                            <a href="{{tag.tagUrl}}"
+                                class="list-group-item list-group-item-action list-group-item-info"><img height="15"
+                                    width="15" src="{{tag.imageUrl}}" alt="">{{ tag.tagName }}</a>
+                            {% endfor %}
+                        </div>
+
+
+
+                    </td>
+                    <td>
+
+                        {% for name in resource.contactNames.all %}
+
+                        {{ name }} <br>
+
+                        {% endfor %}
+
+
+                    </td>
+                    <td>ADD THIS??</td>
+                    <td><button class="btn btn-warning btn-sml"
+                            onclick="window.location = '/updateResource/{{resource.id}}';">Edit</button>
+                        <button class="btn btn-danger btn-sml">Delete</button>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+
+        {% else %}
+        <h5>You do not currently have any resources in your Journal, please add some</h5>
+        {% endif %}
+    </div>
+
+</div>

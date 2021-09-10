@@ -1,0 +1,60 @@
+<style>
+    .list-group-item {
+        padding: 3px 10px;
+        width: 150px;
+    }
+    
+</style>
+
+<br>
+<div class="container">
+    <div class="container">
+        {% if contactResources %}
+
+            <div class="container" id="table header">
+                <div class="float-left">
+                    <h3>Contacts List</h3>
+                </div>
+                <div class="float-right">
+                    <button class="btn btn-primary" onclick="window.location='createContact';">Add New Contact</button>
+                </div>
+            </div>
+            <br><br>
+
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Contact Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Number</th>
+                        <th scope="col">Changes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for resource in contactResources%}
+                    <tr>
+                        <th scope="row">{{resource.contactName}}</th>
+                        <td>
+                            {{resource.contactEmail}}
+                        </td>
+                        <td>
+                            {{resource.contactNumber}}
+                        </td>
+                        <td><button class="btn btn-warning btn-sml"
+                                onclick="window.location = '/updateContact/{{resource.id}}';">Edit</button>
+                            <button class="btn btn-danger btn-sml">Delete</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+
+
+        {% else %}
+            <h5>You do not currently have any contacts in your Journal, please add some</h5>
+        {% endif %}
+    </div>
+
+</div>

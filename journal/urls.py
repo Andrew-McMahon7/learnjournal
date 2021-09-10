@@ -10,4 +10,5 @@ urlpatterns = [
     path('createTag', views.TagCreateView.as_view(), name='tag_resource_create'),
     path('createContact', views.ContactCreateView.as_view(), name='contact_resource_create'),
     path('updateResource/<int:pk>', views.ResourceUpdateView.as_view(), name='resource_update'),
+    path('updateContact/<int:pk>', views.ContactUpdateView.as_view(), name='contact_update'),
 ]
