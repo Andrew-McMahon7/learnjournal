@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import RegexValidator
+from datetime import datetime
 
 # Create your models here.
 
@@ -31,11 +32,8 @@ class ContactsResource(models.Model):
 class JournalResource(models.Model):
     journalName = models.CharField(max_length=200)
     journalUrl = models.URLField()
-    lastAccessed = models.DateTimeField()
+    lastAccessed = models.DateTimeField(default=datetime.now)
     tagNames = models.ManyToManyField(TagsResource)
     contactNames = models.ManyToManyField(ContactsResource)
 
-    def all_tags(self):
-        return ', '.join([tag.tagName for tag in self.tagNames])
-
-
+    

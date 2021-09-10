@@ -1,6 +1,7 @@
 from django.db.models import fields
 from django.db.models.base import Model
 from django.forms import ModelForm
+from django.forms import widgets
 from django.forms.widgets import CheckboxSelectMultiple, Widget
 from journal.models import ContactsResource, JournalResource, Resource, TagsResource
 from django import forms
@@ -8,9 +9,7 @@ from django import forms
 class JournalResourceForm(ModelForm):
        class Meta:
               model = JournalResource
-              fields = '__all__'
-
-       LastAccessed = forms.DateInput()
+              fields = ['journalName', 'journalUrl', 'tagNames', 'contactNames']
 
        tagNames = forms.ModelMultipleChoiceField(
               queryset = TagsResource.objects.all(),
