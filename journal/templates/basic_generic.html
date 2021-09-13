@@ -7,6 +7,17 @@
     min-width: 330px;
   }
 
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+  }
+  
+  .padded {
+    padding-top: 60px;
+  }
+
 </style>
 
 <head>
@@ -22,7 +33,7 @@
 </head>
 
 <body>
-    <div id="navbar">
+    <div class="sticky" id="navbar">
         <nav class="navbar navbar-expand-lg navbar-light bg-primary">
             <a class="navbar-brand text-white" href="/">Journal Training Log</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,7 +71,7 @@
     </div>
 
 
-    <div class = "container col-xs-*" id="content">
+    <div class = "container col-xs-* padded" id="content">
         {% block content %}{% endblock %}
     </div>
 </body>

@@ -109,8 +109,15 @@ class ResourceCreateView(CreateView):
     template_name = 'addResource.html'
     success_url = reverse_lazy('resources')
 
+    Resource_Name = 'Journal Resource'
+
     model = JournalResource
     form_class = JournalResourceForm
+
+    def get_context_data(self, **kwargs):
+        context = super(ResourceCreateView, self).get_context_data(**kwargs)
+        context['resource_type'] = self.Resource_Name
+        return context
 
 
 
@@ -118,16 +125,30 @@ class TagCreateView(CreateView):
     template_name = 'addResource.html'
     success_url = reverse_lazy('resources_tags')
 
+    Resource_Name = 'Software Tag'
+
     model = TagsResource
     fields = '__all__'
+
+    def get_context_data(self, **kwargs):
+        context = super(TagCreateView, self).get_context_data(**kwargs)
+        context['resource_type'] = self.Resource_Name
+        return context
 
 
 class ContactCreateView(CreateView):
     template_name = "addResource.html"
     success_url = reverse_lazy("resources_contacts")
 
+    Resource_Name = 'Contact'
+
     model = ContactsResource
     fields = '__all__'
+
+    def get_context_data(self, **kwargs):
+        context = super(ContactCreateView, self).get_context_data(**kwargs)
+        context['resource_type'] = self.Resource_Name
+        return context
 
 class ResourceUpdateView(UpdateView):
     model = JournalResource
