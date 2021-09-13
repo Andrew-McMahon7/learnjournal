@@ -40,13 +40,10 @@
                 <tr>
                     <th scope="row"><a href="{{resource.journalUrl}}">{{resource.journalName}}</a></th>
                     <td>
-                        <div class="list-group">
+                        <div class="container">
                             {% for tag in resource.tagNames.all %}
-
-                            
-                            <a href="{{tag.tagUrl}}"
-                                class="list-group-item list-group-item-action list-group-item-info"><img height="15"
-                                    width="auto" src="{{tag.imageUrl}}" alt="">{{ tag.tagName }}</a>
+                                <a href="{{tag.tagUrl}}"><img height="15"
+                                        width="auto" src="{{tag.imageUrl}}" alt="">{{ tag.tagName }}</a><br>
                             {% endfor %}
                         </div>
 
