@@ -14,7 +14,7 @@ def index(request):
     journalResources = JournalResource.objects.all().order_by('journalName')
     tagResources = TagsResource.objects.all().order_by('tagName')
     contactResources = ContactsResource.objects.all().order_by('contactName')
-    orderedJResources = JournalResource.objects.all().order_by('lastAccessed')[:3]
+    orderedJResources = JournalResource.objects.all().order_by('lastAccessed').reverse()[:3]
     journalResourceForm = JournalResourceForm()
 
     if request.POST:

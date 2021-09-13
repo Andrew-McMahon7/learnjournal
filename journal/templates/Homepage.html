@@ -28,30 +28,45 @@
 
 <div class="container">
 
-    <h3>Recently Viewed</h3>
+    {% if orderedJResources %}
 
-    <br>
+    <div class="container">
 
-    <div class="row" align="center">
-        <div class="col-sm recently">
-            <br>
-            <h4>Test</h4>
+        <div class="container">
+            <h3>Recently Viewed</h3>
         </div>
 
-        <div class="col-sm recently">
-            <br>
-            <h4>Test</h4>
+        <br>
+
+        <div class="row" align="center">
+            {% for recent in orderedJResources %}
+            <div class="col-sm recently">
+                <br>
+                <h4>{{recent.journalName}}</h4>
+
+                <div class="row">
+                    {% for tag in recent.tagNames.all %}
+                        <div class="col"><a href="{{tag.tagUrl}}"
+                            class="list-group-item list-group-item-action list-group-item-info"><img height="15"
+                                width="auto" src="{{tag.imageUrl}}" alt="">{{ tag.tagName }}</a></div>
+                            
+                        {% if forloop.counter|divisibleby:3 == 0 %}
+                            <div class="w-100"></div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+            
         </div>
-        
-        <div class="col-sm recently">
-            <br>
-            <h4>Test</h4>
-        </div>
-        
     </div>
+
+    <br><br>
+
+{% endif %}
+
 </div>
 
-<br><br>
 
 {% include 'displayResources.html' %}
 
