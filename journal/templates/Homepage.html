@@ -22,8 +22,6 @@
 
 </style>
 
-
-
 <br>
 
 <div class="container">
@@ -76,11 +74,22 @@
                 {% endfor %}
                 </div><br>
 
-                <div class="col-sm">
-                    <div class="row">
-                        Contacts
+                {% for contact in recent.contactNames.all %}
+                <div class="row">
+                    <div class="col-md">
+                        {{ contact.contactName }}
+                        
+                    </div>
+                    <div class="col-md">
+                        {{ contact.contactNumber }}
+                        
+                    </div>
+                    <div class="col-sm">
+                        <a href="#">Email</a>
+                        
                     </div>
                 </div>
+                {% endfor %}
 
             </div>
             {% endfor %}

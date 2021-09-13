@@ -52,9 +52,9 @@
                     </td>
                     <td>
 
-                        {% for name in resource.contactNames.all %}
+                        {% for contact in resource.contactNames.all %}
 
-                        {{ name }} <br>
+                        {{ contact.contactName }} <br>
 
                         {% endfor %}
 
