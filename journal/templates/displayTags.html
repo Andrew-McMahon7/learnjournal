@@ -1,21 +1,55 @@
-<div class="container" id="table header">
-    <div class="float-left">
-        <h3>Software Tag List</h3>
+
+<br>
+<div class="container">
+    <div class="container">
+        {% if tagResources %}
+
+        <div class="container" id="table header">
+            <div class="float-left">
+                <h3>Software Tag List</h3>
+            </div>
+            <div class="float-right">
+                <button class="btn btn-primary" onclick="window.location='createResource';">Add New Software Tag</button>
+            </div>
+        </div>
+        <br><br>
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Software Name</th>
+                    <th scope="col">Documentation Url</th>
+                    <th scope="col">Changes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for resource in tagResources%}
+                <tr>
+                    {% if resource.tagUrl != Null %}
+                        <th scope="row"><p><img height="30"
+                                width="auto" src="{{resource.imageUrl}}" alt="">{{ resource.tagName }}</p></th>
+                    {%else %}
+                        <th scope="row"><p>{{ resource.tagName }}</p></th>
+                    {% endif %}
+                    <td>
+                        <a href="{{resource.tagUrl}}">{{resource.tagUrl}}</a>
+                    </td>
+                    
+                    <td><button class="btn btn-warning btn-sml"
+                            onclick="window.location = '/updateTag/{{resource.id}}';">Edit</button>
+                        <button class="btn btn-danger btn-sml">Delete</button>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+
+        {% else %}
+        <h5>You do not currently have any software tags in your Journal, please add some</h5>
+        {% endif %}
     </div>
-    <div class="float-right">
-        <button class="btn btn-primary" onclick="window.location='createTag';" >Add New Software Tag</button>
-    </div>
+
 </div>
-
-<br><br>
-
-{% if tagResources %}
-    <ul>
-    {% for resource in tagResources%}
-
-        <li><a href="{{resource.tagUrl}}">{{resource.tagName}}</a></li>
-    {% endfor %}        
-    </ul>
-{% else %}
-    <p>You do not currently have any software tags in your Journal, please add some</p>
-{% endif %}

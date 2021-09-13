@@ -165,3 +165,9 @@ class ContactUpdateView(UpdateView):
 # class ResourceDeleteView(DeleteView):
 #     model = Resource
 #     success_url = reverse_lazy('Resource-list')
+
+class TagUpdateView(UpdateView):
+    model = TagsResource
+    fields = '__all__'
+    template_name = 'updateResource.html'
+    success_url = reverse_lazy('resources_tags')

@@ -38,9 +38,11 @@
                     <td>
                         <div class="list-group">
                             {% for tag in resource.tagNames.all %}
+
+                            
                             <a href="{{tag.tagUrl}}"
                                 class="list-group-item list-group-item-action list-group-item-info"><img height="15"
-                                    width="15" src="{{tag.imageUrl}}" alt="">{{ tag.tagName }}</a>
+                                    width="auto" src="{{tag.imageUrl}}" alt="">{{ tag.tagName }}</a>
                             {% endfor %}
                         </div>
 
