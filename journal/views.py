@@ -171,3 +171,8 @@ class TagUpdateView(UpdateView):
     fields = '__all__'
     template_name = 'updateResource.html'
     success_url = reverse_lazy('resources_tags')
+
+class ResourceDeleteView(DeleteView):
+    model = JournalResource
+    template_name = 'deleteResource.html'
+    success_url = reverse_lazy('resources')

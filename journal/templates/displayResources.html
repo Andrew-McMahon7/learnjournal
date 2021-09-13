@@ -62,7 +62,8 @@
                     <td>ADD THIS??</td>
                     <td><button class="btn btn-warning btn-sml"
                             onclick="window.location = '/updateResource/{{resource.id}}';">Edit</button>
-                        <button class="btn btn-danger btn-sml">Delete</button>
+                        <button class="btn btn-danger btn-sml"
+                            onclick="window.location = '/deleteResource/{{resource.id}}';">Delete</button>
                     </td>
                 </tr>
                 {% endfor %}

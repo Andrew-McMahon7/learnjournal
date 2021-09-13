@@ -12,4 +12,5 @@ urlpatterns = [
     path('updateResource/<int:pk>', views.ResourceUpdateView.as_view(), name='resource_update'),
     path('updateContact/<int:pk>', views.ContactUpdateView.as_view(), name='contact_update'),
     path('updateTag/<int:pk>', views.TagUpdateView.as_view(), name='tag_update'),
+    path('deleteResource/<int:pk>', views.ResourceDeleteView.as_view(), name='resource_delete'),
 ]
