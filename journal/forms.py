@@ -15,6 +15,10 @@ class JournalResourceForm(ModelForm):
               model = JournalResource
               fields = ['journalName', 'journalUrl', 'tagNames', 'contactNames']
 
+       def __init__(self, *args, **kwargs):
+              super(JournalResourceForm, self).__init__(*args, **kwargs)
+              self.fields['contactNames'].required = False          
+
        tagNames = CustomTagMMCF(
               queryset = TagsResource.objects.all(),
               widget = forms.CheckboxSelectMultiple

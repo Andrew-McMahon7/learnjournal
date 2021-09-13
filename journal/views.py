@@ -14,6 +14,7 @@ def index(request):
     journalResources = JournalResource.objects.all().order_by('journalName')
     tagResources = TagsResource.objects.all().order_by('tagName')
     contactResources = ContactsResource.objects.all().order_by('contactName')
+    orderedJResources = JournalResource.objects.all().order_by('lastAccessed')[:3]
     journalResourceForm = JournalResourceForm()
 
     if request.POST:
@@ -32,6 +33,7 @@ def index(request):
         'journalResources': journalResources,
         'tagResources': tagResources,
         'contactResources': contactResources,
+        'orderedJResources': orderedJResources,
     }
     return HttpResponse(template.render(context, request))
 

@@ -7,8 +7,8 @@
 <br><br>
 
 <form method="post">{% csrf_token %}
-    <p>Are you sure you want to delete "{{ object }}"?</p>
-    <input type="submit" value="Confirm">
+    <p>Are you sure you want to delete {{ object.journalName }}?</p>
+    <button class="btn btn-danger" type="submit">Confirm Delete</button>
 </form>
 
 {% endblock %}
