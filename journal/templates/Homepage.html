@@ -44,17 +44,24 @@
                 <br>
                 <h4>{{recent.journalName}}</h4>
 
-                <div class="row">
-                    {% for tag in recent.tagNames.all %}
-                        <div class="col"><a href="{{tag.tagUrl}}"
-                            class="list-group-item list-group-item-action list-group-item-info"><img height="15"
+                {% for tag in recent.tagNames.all %}
+                    {% if forloop.counter0|divisibleby:3 == 0 %}
+                        
+                        <div class="col-sm"><a href="{{tag.tagUrl}}"><img height="15"
                                 width="auto" src="{{tag.imageUrl}}" alt="">{{ tag.tagName }}</a></div>
-                            
-                        {% if forloop.counter|divisibleby:3 == 0 %}
-                            <div class="w-100"></div>
+                    {% else %}
+                        {% if forloop.counter0 != 0 %}
+                            </div><br><div class="row" >
+                                <div class="col-sm"><a href="{{tag.tagUrl}}"><img height="15"
+                                        width="auto" src="{{tag.imageUrl}}" alt="">{{ tag.tagName }}</a></div>
+                        {% else %}
+                            <div class="row" >
+                                <div class="col-sm"><a href="{{tag.tagUrl}}"><img height="15"
+                                        width="auto" src="{{tag.imageUrl}}" alt="">{{ tag.tagName }}</a></div>
                         {% endif %}
-                    {% endfor %}
-                </div>
+                    {% endif %}
+                {% endfor %}
+                </div><br>
             </div>
             {% endfor %}
             
