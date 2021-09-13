@@ -26,7 +26,7 @@
             <tbody>
                 {% for resource in tagResources%}
                 <tr>
-                    {% if resource.tagUrl != Null %}
+                    {% if resource.imageUrl != Null %}
                         <th scope="row"><p><img height="30"
                                 width="auto" src="{{resource.imageUrl}}" alt="">{{ resource.tagName }}</p></th>
                     {%else %}

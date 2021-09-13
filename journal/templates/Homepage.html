@@ -7,7 +7,7 @@
 <style>
     .recently {
         box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
-        height: 250px;
+        height: 350px;
         border-radius: 35px;
         margin-right: 15px;
         margin-left: 15px;
@@ -32,36 +32,56 @@
 
     <div class="container">
 
-        <div class="container">
-            <h3>Recently Viewed</h3>
-        </div>
-
         <br>
 
         <div class="row" align="center">
             {% for recent in orderedJResources %}
             <div class="col-sm recently">
                 <br>
-                <h4>{{recent.journalName}}</h4>
+                <h4><a href="{{recent.journalUrl}}">{{recent.journalName}}</a></h4>
+
+                <br>
 
                 {% for tag in recent.tagNames.all %}
                     {% if forloop.counter0|divisibleby:3 == 0 %}
                         
-                        <div class="col-sm"><a href="{{tag.tagUrl}}"><img height="15"
-                                width="auto" src="{{tag.imageUrl}}" alt="">{{ tag.tagName }}</a></div>
+                        <div class="col-sm">
+                            {% if tag.imageUrl != Null %}
+                                <a href="{{tag.tagUrl}}"><img width="60" height="auto" src="{{tag.imageUrl}}" alt=""></a>
+                            {%else %}
+                                <a href="{{tag.tagUrl}}">{{ tag.tagName }}</a>
+                            {% endif %}
+                        </div>
                     {% else %}
                         {% if forloop.counter0 != 0 %}
                             </div><br><div class="row" >
-                                <div class="col-sm"><a href="{{tag.tagUrl}}"><img height="15"
-                                        width="auto" src="{{tag.imageUrl}}" alt="">{{ tag.tagName }}</a></div>
+                                <div class="col-sm">
+                                    {% if tag.imageUrl != Null %}
+                                        <a href="{{tag.tagUrl}}"><img width="60" height="auto" src="{{tag.imageUrl}}" alt=""></a>
+                                    {%else %}
+                                        <a href="{{tag.tagUrl}}">{{ tag.tagName }}</a>
+                                    {% endif %}
+                                </div>
                         {% else %}
                             <div class="row" >
-                                <div class="col-sm"><a href="{{tag.tagUrl}}"><img height="15"
-                                        width="auto" src="{{tag.imageUrl}}" alt="">{{ tag.tagName }}</a></div>
+                                <div class="col-sm">
+                                    {% if tag.imageUrl != Null %}
+                                        <a href="{{tag.tagUrl}}"><img width="60" height="auto" src="{{tag.imageUrl}}" alt=""></a>
+                                    {%else %}
+                                        <a href="{{tag.tagUrl}}">{{ tag.tagName }}</a>
+                                    {% endif %}
+                                </div>
                         {% endif %}
                     {% endif %}
                 {% endfor %}
                 </div><br>
+
+                <div class="col-sm">
+                    <div class="row">
+                        Contacts
+                    </div>
+                </div>
+
             </div>
             {% endfor %}
             
