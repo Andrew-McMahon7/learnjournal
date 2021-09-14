@@ -43,7 +43,8 @@
                         </td>
                         <td><button class="btn btn-warning btn-sml"
                                 onclick="window.location = '/updateContact/{{resource.id}}';">Edit</button>
-                            <button class="btn btn-danger btn-sml">Delete</button>
+                            <button class="btn btn-danger btn-sml"
+                            onclick="window.location = '/deleteContact/{{resource.id}}';">Delete</button>
                         </td>
                     </tr>
                     {% endfor %}

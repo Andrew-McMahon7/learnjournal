@@ -13,4 +13,6 @@ urlpatterns = [
     path('updateContact/<int:pk>', views.ContactUpdateView.as_view(), name='contact_update'),
     path('updateTag/<int:pk>', views.TagUpdateView.as_view(), name='tag_update'),
     path('deleteResource/<int:pk>', views.ResourceDeleteView.as_view(), name='resource_delete'),
+    path('deleteContact/<int:pk>', views.ContactDeleteView.as_view(), name='contact_delete'),
+    path('deleteTag/<int:pk>', views.TagDeleteView.as_view(), name='tag_delete'),
 ]

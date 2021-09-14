@@ -178,3 +178,13 @@ class ResourceDeleteView(DeleteView):
     model = JournalResource
     template_name = 'deleteResource.html'
     success_url = reverse_lazy('resources')
+
+class TagDeleteView(DeleteView):
+    model = TagsResource
+    template_name = 'deleteTag.html'
+    success_url = reverse_lazy('resources_tags')
+
+class ContactDeleteView(DeleteView):
+    model = ContactsResource
+    template_name = 'deleteContact.html'
+    success_url = reverse_lazy('resources_contacts')
