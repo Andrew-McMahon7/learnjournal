@@ -17,7 +17,7 @@ class CustomContactMMCF(forms.ModelMultipleChoiceField):
 class JournalResourceForm(ModelForm):
        class Meta:
               model = JournalResource
-              fields = ['journalName', 'journalUrl', 'tagNames', 'contactNames']
+              fields = ['journalName', 'journalUrl', 'tagNames', 'contactNames', 'studied']
 
        def __init__(self, *args, **kwargs):
               super(JournalResourceForm, self).__init__(*args, **kwargs)

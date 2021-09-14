@@ -13,6 +13,12 @@
     width: 100%;
     z-index: 100;
   }
+
+  .sticky-study {
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+  }
   
   .padded {
     padding-top: 60px;
@@ -71,10 +77,64 @@
           </nav>
     </div>
 
+    <div class="row padded">
+      <div class="col">
+        <br>
 
-    <div class = "container col-xs-* padded" id="content">
+        <div class="container sticky-study">
+
+          {% if journalResources %}
+
+              <div class="col-sm">
+                <br>
+
+              <table class="table" id = "myTable" style="max-width: 275px; min-width: 275px;">
+                <thead>
+                    <tr>
+                        <th scope="col"><h3>To Study:</h3></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for resource in journalResources%}
+
+                      {% if resource.studied == False %}
+
+                        <tr>
+                          <th scope="row"><a href="{{resource.journalUrl}}">{{resource.journalName}}</a></th>
+                          <td><button class="btn btn-warning btn-sml"
+                            onclick="window.location = '/updateResource/{{resource.id}}';">Edit</button></td>
+                        </tr>
+
+                      {% endif %}
+
+                    {% endfor %}
+
+                </tbody>
+
+              </table>
+              </div>
+
+              
+                    
+
+
+
+
+          {% endif %}
+
+        </div>
+
+      </div>
+              
+      <div class = "col-8" id="content">
         {% block content %}{% endblock %}
+      </div>
+      <div class="col">
+
+      </div>
     </div>
+    
 </body>
 
 <script>

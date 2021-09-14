@@ -35,6 +35,7 @@ class JournalResource(models.Model):
     lastAccessed = models.DateTimeField(default=datetime.now)
     tagNames = models.ManyToManyField(TagsResource)
     contactNames = models.ManyToManyField(ContactsResource, blank=True)
+    studied = models.BooleanField(default=False)
 
     def save(self):
         self.lastAccessed = datetime.now()
