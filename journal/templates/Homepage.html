@@ -113,9 +113,10 @@
                                 
                             </div>
                             <div class="col-sm">
-                                <div id="tooltip">Email
+                                <div id="tooltip" onclick="window.location = '/sendmail/{{contact.id}}/{{recent.id}}';">Email
                                     <span class="tooltiptext">{{contact.contactEmail}}</span>
                                 </div>
+
                             </div>
                         </div>
                         
@@ -137,7 +138,7 @@
 
 </div>
 
-<a href="{% url 'sendmail' %}">Send Test Email</a>
+
 
 
 {% include 'displayResources.html' %}

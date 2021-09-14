@@ -82,11 +82,25 @@ def resources_contacts(request):
     }
     return HttpResponse(template.render(context, request))
 
-def sendmail(request):
-    subject = 'Thank you for registering to our site'
-    message = ' it  means a world to us '
+def sendmail(request, contact_id, resource_id):
+    resource = JournalResource.objects.get(id = resource_id)
+    contact = ContactsResource.objects.get(id = contact_id)
+    recipient_list = [contact.contactEmail,]
+    subject = 'Advice on %s' % resource.journalName
+
+    message = """Hi %s,
+
+    I am currently working on a project which uses %s.
+
+    Would you be able to help me, potentially over a call. When is best for you?
+
+    Many thanks,
+
+
+    
+    """ % (str(contact.contactName), (', '.join([tag.tagName for tag in resource.tagNames.all()])))
+
     email_from = settings.EMAIL_HOST_USER
-    recipient_list = ['andrew.mcmahon@solirius.com',]
     send_mail( subject, message, email_from, recipient_list )
     return HttpResponse('Mail successfully sent')
 
