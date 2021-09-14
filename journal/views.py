@@ -42,6 +42,7 @@ def index(request):
 
 def resources_tags(request):
     tagResources = TagsResource.objects.all()
+    journalResources = JournalResource.objects.all().order_by('journalName')
     TagResourceForm = TagResourceForm()
 
     if request.POST:
@@ -58,11 +59,13 @@ def resources_tags(request):
     context = {
         'TagResourceForm': TagResourceForm,
         'tagResources': tagResources,
+        'journalResources': journalResources,
     }
     return HttpResponse(template.render(context, request))
 
 def resources_contacts(request):
     contactResources = ContactsResource.objects.all()
+    journalResources = JournalResource.objects.all().order_by('journalName')
     ContactResourceForm = ContactResourceForm()
 
     if request.POST:
@@ -79,6 +82,7 @@ def resources_contacts(request):
     context = {
         'ContactResourceForm': ContactResourceForm,
         'contactResources': contactResources,
+        'journalResources': journalResources,
     }
     return HttpResponse(template.render(context, request))
 
@@ -121,6 +125,11 @@ class TagResourceView(generic.ListView):
         """Return the last five published questions."""
         return TagsResource.objects.order_by('tagName')  #order_by('-pub_date')[:5]
 
+    def get_context_data(self, **kwargs):
+        context = super(TagResourceView, self).get_context_data(**kwargs)
+        context['journalResources'] = JournalResource.objects.all().order_by('journalName')
+        return context
+
 
 class ContactResourceView(generic.ListView):
     template_name = 'allcontactsresources.html'
@@ -130,7 +139,10 @@ class ContactResourceView(generic.ListView):
         """Return the last five published questions."""
         return ContactsResource.objects.order_by('contactName')  #order_by('-pub_date')[:5]
 
-
+    def get_context_data(self, **kwargs):
+        context = super(ContactResourceView, self).get_context_data(**kwargs)
+        context['journalResources'] = JournalResource.objects.all().order_by('journalName')
+        return context
 
 class ResourceCreateView(CreateView):
     template_name = 'addResource.html'
