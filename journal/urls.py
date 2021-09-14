@@ -15,4 +15,5 @@ urlpatterns = [
     path('deleteResource/<int:pk>', views.ResourceDeleteView.as_view(), name='resource_delete'),
     path('deleteContact/<int:pk>', views.ContactDeleteView.as_view(), name='contact_delete'),
     path('deleteTag/<int:pk>', views.TagDeleteView.as_view(), name='tag_delete'),
+    path('sendmail', views.sendmail, name='sendmail'),
 ]

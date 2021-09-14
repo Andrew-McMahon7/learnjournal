@@ -19,6 +19,33 @@
         position: relative;
         z-index: 1;
     }
+      
+      .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        
+        /* Position the tooltip */
+        position: absolute;
+        z-index: 1;
+        top: -5px;
+        left: 105%;
+        
+        transition: visibility 0.25s ease-out;
+        z-index: 2;
+      }
+      
+      #tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+      }
+      
+      .tooltiptext:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+      }
 
 </style>
 
@@ -86,8 +113,9 @@
                                 
                             </div>
                             <div class="col-sm">
-                                <a href="#">Email</a>
-                                
+                                <div id="tooltip">Email
+                                    <span class="tooltiptext">{{contact.contactEmail}}</span>
+                                </div>
                             </div>
                         </div>
                         
@@ -108,6 +136,8 @@
 {% endif %}
 
 </div>
+
+<a href="{% url 'sendmail' %}">Send Test Email</a>
 
 
 {% include 'displayResources.html' %}

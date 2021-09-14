@@ -7,6 +7,8 @@ from django.views import generic
 from django.views.generic.edit import CreateView, DeleteView, UpdateView 
 from journal.forms import JournalResourceForm, TagResourceForm, ContactResourceForm
 from django.urls import reverse_lazy
+from django.core.mail import send_mail
+from django.conf import settings
 
 # Create your views here.
 
@@ -79,6 +81,14 @@ def resources_contacts(request):
         'contactResources': contactResources,
     }
     return HttpResponse(template.render(context, request))
+
+def sendmail(request):
+    subject = 'Thank you for registering to our site'
+    message = ' it  means a world to us '
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = ['andrew.mcmahon@solirius.com',]
+    send_mail( subject, message, email_from, recipient_list )
+    return HttpResponse('Mail successfully sent')
 
 class ResourceView(generic.ListView):
     template_name = 'alljournalresources.html'
