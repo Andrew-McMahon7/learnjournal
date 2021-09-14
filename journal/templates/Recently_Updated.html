@@ -1,0 +1,88 @@
+<br>
+
+<div class="container">
+
+    {% if orderedJResources %}
+
+    <div class="container">
+
+        <br>
+
+        <div class="row" align="center">
+            {% for recent in orderedJResources %}
+            <div class="col-sm recently">
+                <br>
+                <h4><a href="{{recent.journalUrl}}">{{recent.journalName}}</a></h4>
+
+                <br>
+
+                {% for tag in recent.tagNames.all %}
+                    {% if forloop.counter0|divisibleby:3 == 0 %}
+                        
+                        <div class="col-sm">
+                            {% if tag.imageUrl != Null %}
+                                <a href="{{tag.tagUrl}}"><img width="60" height="auto" src="{{tag.imageUrl}}" alt=""></a>
+                            {%else %}
+                                <a href="{{tag.tagUrl}}">{{ tag.tagName }}</a>
+                            {% endif %}
+                        </div>
+                    {% else %}
+                        {% if forloop.counter0 != 0 %}
+                            </div><br><div class="row" >
+                                <div class="col-sm">
+                                    {% if tag.imageUrl != Null %}
+                                        <a href="{{tag.tagUrl}}"><img width="60" height="auto" src="{{tag.imageUrl}}" alt=""></a>
+                                    {%else %}
+                                        <a href="{{tag.tagUrl}}">{{ tag.tagName }}</a>
+                                    {% endif %}
+                                </div>
+                        {% else %}
+                            <div class="row" >
+                                <div class="col-sm">
+                                    {% if tag.imageUrl != Null %}
+                                        <a href="{{tag.tagUrl}}"><img width="60" height="auto" src="{{tag.imageUrl}}" alt=""></a>
+                                    {%else %}
+                                        <a href="{{tag.tagUrl}}">{{ tag.tagName }}</a>
+                                    {% endif %}
+                                </div>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+                </div><br>
+                {% if recent.contactNames.all %}
+                    {% for contact in recent.contactNames.all %}
+                    
+                        <div class="row">
+                            <div class="col-md">
+                                {{ contact.contactName }}
+                                
+                            </div>
+                            {% if contact.contactNumber %}
+                                <div class="col-md">
+                                    {{ contact.contactNumber }}
+                                    
+                                </div>
+                            {% endif %}
+                            <div class="col-md">
+                                <div class = "link" onclick="window.location = '/sendmail/{{contact.id}}/{{recent.id}}';">Email</div>
+
+                            </div>
+                        </div><br>
+                        
+                    {% endfor %}
+                {% else %}
+                    <p>No contacts for this resource</p>    
+                {% endif %}
+                        
+
+            </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+
+    <br><br>
+
+{% endif %}
+
+</div>

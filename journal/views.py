@@ -156,6 +156,7 @@ class ResourceCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super(ResourceCreateView, self).get_context_data(**kwargs)
         context['resource_type'] = self.Resource_Name
+        context['journalResources'] = JournalResource.objects.all().order_by('journalName')
         return context
 
 
@@ -172,6 +173,7 @@ class TagCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super(TagCreateView, self).get_context_data(**kwargs)
         context['resource_type'] = self.Resource_Name
+        context['journalResources'] = JournalResource.objects.all().order_by('journalName')
         return context
 
 
@@ -187,6 +189,7 @@ class ContactCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super(ContactCreateView, self).get_context_data(**kwargs)
         context['resource_type'] = self.Resource_Name
+        context['journalResources'] = JournalResource.objects.all().order_by('journalName')
         return context
 
 class ResourceUpdateView(UpdateView):
@@ -194,6 +197,13 @@ class ResourceUpdateView(UpdateView):
     form_class = JournalResourceForm
     template_name = 'updateResource.html'
     success_url = reverse_lazy('resources')
+    Resource_Name = 'Journal Resource'
+
+    def get_context_data(self, **kwargs):
+        context = super(ResourceUpdateView, self).get_context_data(**kwargs)
+        context['resource_type'] = self.Resource_Name
+        context['journalResources'] = JournalResource.objects.all().order_by('journalName')
+        return context
 
 
 class ContactUpdateView(UpdateView):
@@ -201,27 +211,62 @@ class ContactUpdateView(UpdateView):
     fields = '__all__'
     template_name = 'updateResource.html'
     success_url = reverse_lazy('resources_contacts')
+    Resource_Name = 'Contact'
 # class ResourceDeleteView(DeleteView):
 #     model = Resource
 #     success_url = reverse_lazy('Resource-list')
+
+    def get_context_data(self, **kwargs):
+        context = super(ContactUpdateView, self).get_context_data(**kwargs)
+        context['resource_type'] = self.Resource_Name
+        context['journalResources'] = JournalResource.objects.all().order_by('journalName')
+        return context
 
 class TagUpdateView(UpdateView):
     model = TagsResource
     fields = '__all__'
     template_name = 'updateResource.html'
     success_url = reverse_lazy('resources_tags')
+    Resource_Name = 'Software Tag'
+
+    def get_context_data(self, **kwargs):
+        context = super(TagUpdateView, self).get_context_data(**kwargs)
+        context['resource_type'] = self.Resource_Name
+        context['journalResources'] = JournalResource.objects.all().order_by('journalName')
+        return context
 
 class ResourceDeleteView(DeleteView):
     model = JournalResource
     template_name = 'deleteResource.html'
     success_url = reverse_lazy('resources')
+    Resource_Name = 'Journal Resource'
+
+    def get_context_data(self, **kwargs):
+        context = super(ResourceDeleteView, self).get_context_data(**kwargs)
+        context['resource_type'] = self.Resource_Name
+        context['journalResources'] = JournalResource.objects.all().order_by('journalName')
+        return context
 
 class TagDeleteView(DeleteView):
     model = TagsResource
     template_name = 'deleteTag.html'
     success_url = reverse_lazy('resources_tags')
+    Resource_Name = 'Software Tag'
+
+    def get_context_data(self, **kwargs):
+        context = super(TagDeleteView, self).get_context_data(**kwargs)
+        context['resource_type'] = self.Resource_Name
+        context['journalResources'] = JournalResource.objects.all().order_by('journalName')
+        return context
 
 class ContactDeleteView(DeleteView):
     model = ContactsResource
     template_name = 'deleteContact.html'
     success_url = reverse_lazy('resources_contacts')
+    Resource_Name = 'Contact'
+
+    def get_context_data(self, **kwargs):
+        context = super(ContactDeleteView, self).get_context_data(**kwargs)
+        context['resource_type'] = self.Resource_Name
+        context['journalResources'] = JournalResource.objects.all().order_by('journalName')
+        return context
