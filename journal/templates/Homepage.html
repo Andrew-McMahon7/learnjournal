@@ -73,23 +73,29 @@
                     {% endif %}
                 {% endfor %}
                 </div><br>
-
-                {% for contact in recent.contactNames.all %}
-                <div class="row">
-                    <div class="col-md">
-                        {{ contact.contactName }}
+                {% if recent.contactNames.all %}
+                    {% for contact in recent.contactNames.all %}
+                    
+                        <div class="row">
+                            <div class="col-md">
+                                {{ contact.contactName }}
+                                
+                            </div>
+                            <div class="col-md">
+                                {{ contact.contactNumber }}
+                                
+                            </div>
+                            <div class="col-sm">
+                                <a href="#">Email</a>
+                                
+                            </div>
+                        </div>
                         
-                    </div>
-                    <div class="col-md">
-                        {{ contact.contactNumber }}
+                    {% endfor %}
+                {% else %}
+                    <p>No contacts for this resource</p>    
+                {% endif %}
                         
-                    </div>
-                    <div class="col-sm">
-                        <a href="#">Email</a>
-                        
-                    </div>
-                </div>
-                {% endfor %}
 
             </div>
             {% endfor %}

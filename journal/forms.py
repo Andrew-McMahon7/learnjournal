@@ -10,6 +10,10 @@ class CustomTagMMCF(forms.ModelMultipleChoiceField):
        def label_from_instance(self, tag):
            return "%s" % tag.tagName
 
+class CustomContactMMCF(forms.ModelMultipleChoiceField):
+       def label_from_instance(self, contact):
+           return "%s" % contact.contactName
+
 class JournalResourceForm(ModelForm):
        class Meta:
               model = JournalResource
@@ -24,7 +28,7 @@ class JournalResourceForm(ModelForm):
               widget = forms.CheckboxSelectMultiple
        )
 
-       contactNames = forms.ModelMultipleChoiceField(
+       contactNames = CustomContactMMCF(
               queryset = ContactsResource.objects.all(),
               widget = forms.CheckboxSelectMultiple
        )
