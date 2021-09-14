@@ -102,6 +102,7 @@ def sendmail(request, contact_id, resource_id):
 
     email_from = settings.EMAIL_HOST_USER
     send_mail( subject, message, email_from, recipient_list )
+    
     return HttpResponse('Mail successfully sent')
 
 class ResourceView(generic.ListView):
