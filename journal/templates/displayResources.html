@@ -7,6 +7,18 @@
     img {
         padding-right: 5px;
     }
+
+    .pretty_hover:hover {
+        background-color: white;
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+        position: relative;
+        z-index: 1;
+    }
+
+    .link {
+        color: lightskyblue;
+        text-decoration: underline;
+    }
 </style>
 
 <br>
@@ -42,7 +54,7 @@
                     <td>
                         <div class="container">
                             {% for tag in resource.tagNames.all %}
-                                <a href="{{tag.tagUrl}}"><img height="15"
+                                <a href="{{tag.tagUrl}}" class="pretty_hover"><img height="15"
                                         width="auto" src="{{tag.imageUrl}}" alt="">{{ tag.tagName }}</a><br>
                             {% endfor %}
                         </div>
@@ -52,11 +64,37 @@
                     </td>
                     <td>
 
-                        {% for contact in resource.contactNames.all %}
+                        <!-- {% for contact in resource.contactNames.all %}
 
                         {{ contact.contactName }} <br>
 
-                        {% endfor %}
+                        {% endfor %} -->
+
+
+                        {% if resource.contactNames.all %}
+                            {% for contact in resource.contactNames.all %}
+                            
+                                <div class="row">
+                                    <div class="col-md">
+                                        {{ contact.contactName }}
+                                        
+                                    </div>
+                                    {% if contact.contactNumber %}
+                                        <div class="col-md">
+                                            {{ contact.contactNumber }}
+                                            
+                                        </div>
+                                    {% endif %}
+                                    <div class="col-md">
+                                        <div class = "link" onclick="window.location = '/sendmail/{{contact.id}}/{{resource.id}}';">Email</div>
+
+                                    </div>
+                                </div><br>
+                                
+                            {% endfor %}
+                        {% else %}
+                            <p>No contacts for this resource</p>    
+                        {% endif %}
 
 
                     </td>

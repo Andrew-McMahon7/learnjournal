@@ -86,11 +86,13 @@
                                 {{ contact.contactName }}
                                 
                             </div>
+                            {% if contact.contactNumber %}
+                                <div class="col-md">
+                                    {{ contact.contactNumber }}
+                                    
+                                </div>
+                            {% endif %}
                             <div class="col-md">
-                                {{ contact.contactNumber }}
-                                
-                            </div>
-                            <div class="col-sm">
                                 <div class = "link" onclick="window.location = '/sendmail/{{contact.id}}/{{recent.id}}';">Email</div>
 
                             </div>
