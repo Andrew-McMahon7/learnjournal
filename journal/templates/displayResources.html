@@ -19,7 +19,10 @@
         color: lightskyblue;
         text-decoration: underline;
     }
+
 </style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <br>
 <div class="container">
@@ -34,11 +37,23 @@
             <div class="float-right">
                 <button class="btn btn-primary" onclick="window.location='createResource';">Add New Resource</button>
             </div>
+            <div class="float-right" style="margin-right: 15px;">
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="dropdown-text">Dropdown Example
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li class="DropDown-NoFilter">No Filter</li>
+                        {% for tag in tagResources %}
+                            <li class="DropDown-Filter">{{tag.tagName}}</li>
+                        {% endfor %}
+                    </ul>
+                  </div>
+            </div>
         </div>
         <br><br>
 
 
-        <table class="table" id = "myTable">
+        <table class="table" id = "myTable-Resources">
             <thead>
                 <tr>
                     <th scope="col">Resource Name</th>
@@ -116,3 +131,23 @@
     </div>
 
 </div>
+
+<script>
+    $(document).ready(function(){
+      $(".DropDown-Filter").on("click", function() {
+        var value = $(this).text().toLowerCase();
+        console.log(value);
+        $("#myTable-Resources tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+      $(".DropDown-NoFilter").on("click", function() {
+        var value = "";
+        console.log(value);
+        $("#myTable-Resources tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+      
+    });
+</script>

@@ -117,6 +117,11 @@ class ResourceView(generic.ListView):
         """Return the last five published questions."""
         return JournalResource.objects.order_by('journalName')  #order_by('-pub_date')[:5]
 
+    def get_context_data(self, **kwargs):
+            context = super(ResourceView, self).get_context_data(**kwargs)
+            context['tagResources'] = TagsResource.objects.all().order_by('tagName')
+            return context
+
 class TagResourceView(generic.ListView):
     template_name = 'alltagsresources.html'
     context_object_name = 'tagResources'
